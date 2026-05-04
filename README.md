@@ -8,4 +8,4 @@ Coming soon
 
 ## Alternative Implementations
 - **C++:** Coming soon
-- **MATLAB:** Coming soon
+- **MATLAB:** https://github.com/etcorman/implicit-minimal-surfaces
