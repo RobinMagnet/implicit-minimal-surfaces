@@ -7,5 +7,5 @@ Coming soon
 
 
 ## Alternative Implementations
-- **C++:** https://github.com/yousufmsoliman/implicit- minimal- surfaces
+- **C++:** https://github.com/yousufmsoliman/implicit-minimal-surfaces
 - **MATLAB:** https://github.com/etcorman/implicit-minimal-surfaces
