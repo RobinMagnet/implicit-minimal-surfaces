@@ -1,2 +1,11 @@
 # implicit-minimal-surfaces
-Official implementation of the Siggraph 2026 Paper "Implicit Minimal Surfaces for Bijective Correspondences"
+Official Python implementation of the paper: 
+**"Implicit Minimal Surfaces for Bijective Correspondences"**
+*SIGGRAPH 2026 (ACM Transactions on Graphics)*
+
+Coming soon
+
+
+## Alternative Implementations
+- **C++:** Coming soon
+- **MATLAB:** Coming soon
