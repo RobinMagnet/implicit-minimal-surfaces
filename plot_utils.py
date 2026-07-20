@@ -114,9 +114,6 @@ def vert2rgb(vertices, pretty=False, param=[-2, -1, 3]):
     Convert (x,y,z) coordinates of vertices to RGB values, using either `vertices_to_rgb_basic` or
     `vertices_to_rgb_basic`.
 
-    If n_colors is specified as a positive integer, each channel only supports the given number of
-    colors.
-
     Parameters
     ----------------------------
     vertices : (n,3) - x,y,z coordinates of vertices
@@ -344,7 +341,6 @@ def plot_p2p(
     mesh2,
     p2p,
     pretty=True,
-    n_colors=-1,
     param=[-2, -1, 3],
     uv1=None,
     texture=None,
@@ -365,7 +361,7 @@ def plot_p2p(
     """
 
     # plot the correspondences
-    cmap1 = vert2rgb(mesh1.vertices, pretty=pretty, param=param, n_colors=n_colors)
+    cmap1 = vert2rgb(mesh1.vertices, pretty=pretty, param=param)
 
     if uv1 is None:
         uv2 = None
