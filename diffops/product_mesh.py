@@ -776,6 +776,7 @@ class ProductMesh:
             elif initial_guess.ndim == 2:
                 if initial_guess.shape[1] == 1:
                     assert initial_guess.shape[0] == self.n_vertices
+                    X = initial_guess.copy()
                 else:
                     assert initial_guess.shape == (self.n1, self.n2)
                     X = einops.rearrange(initial_guess, "n1 n2 -> (n1 n2) 1")

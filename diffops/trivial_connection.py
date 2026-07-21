@@ -157,7 +157,7 @@ def modify_connection_to_curvature_l2(
             "Ensure that input curvatures are consistent."
         )
 
-    if star1 is not None:
+    if star1 is None:
         star1 = sparse.eye(n_edges)
 
     res_l2 = solve_min_quad_with_fixed(

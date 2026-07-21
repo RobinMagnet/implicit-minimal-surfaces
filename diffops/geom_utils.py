@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import sparse
 
 
 def compute_face_areas_from_len(lengths: np.ndarray):
@@ -188,3 +189,62 @@ def compute_flipped_edge_length(l12, l13, l14, l32, l43):
         return l24.item()
 
     return l24
+
+
+def compute_faces_areas(vertices, faces):
+    """
+    Compute per-face areas of a triangular mesh
+
+    Parameters
+    -----------------------------
+    vertices : np.ndarray
+        (n,3) array of vertices coordinates
+    faces    : np.ndarray
+        (m,3) array of vertex indices defining faces
+
+    Returns
+    -----------------------------
+    faces_areas : np.ndarray
+        (m,) array of per-face areas
+    """
+
+    v1 = vertices[faces[:, 0]]  # (m,3)
+    v2 = vertices[faces[:, 1]]  # (m,3)
+    v3 = vertices[faces[:, 2]]  # (m,3)
+    faces_areas = 0.5 * np.linalg.norm(np.cross(v2 - v1, v3 - v1), axis=1)  # (m,)
+
+    return faces_areas
+
+
+def compute_vertex_areas(vertices, faces, faces_areas=None):
+    """
+    Compute per-vertex areas of a triangular mesh.
+    Area of a vertex, approximated as one third of the sum of the area of its adjacent triangles.
+
+    Parameters
+    -----------------------------
+    vertices    : np.ndarray
+        (n,3) array of vertices coordinates
+    faces       : np.ndarray
+        (m,3) array of vertex indices defining faces
+    faces_areas : np.ndarray, optional
+        (m,) array of per-face areas
+
+    Returns
+    -----------------------------
+    vert_areas : np.ndarray
+        (n,) array of per-vertex areas
+    """
+    N = vertices.shape[0]
+
+    if faces_areas is None and faces is not None:
+        faces_areas = compute_faces_areas(vertices, faces)  # (m,)
+    elif faces is None:
+        return 1 / np.ones(N)
+
+    vertex_areas = np.zeros(N)
+    np.add.at(vertex_areas, faces[:, 0], faces_areas / 3)
+    np.add.at(vertex_areas, faces[:, 1], faces_areas / 3)
+    np.add.at(vertex_areas, faces[:, 2], faces_areas / 3)
+
+    return vertex_areas
